@@ -1,5 +1,5 @@
 import InfoManagement
-import BuildModel_VAE
+import BuildModelpy
 import BuildDataLoader
 import torch
 from Mnist_Net import test_if_cuda_ok
@@ -57,7 +57,7 @@ else:
         BuildDataLoader.BuildTraining(BATCH_SIZE, IMG_SIZE,
                                       train_index_file ,train_index, validata_index)
 [basic_model, loss_fun] = \
-    BuildModel_VAE.build_model(ClassNum=ClassNum)
+    BuildModelpy.build_model(ClassNum=ClassNum)
 # print(len(validate_loader))
 if model_folder.load_model():
     basic_model = model_folder.load_model()
@@ -66,7 +66,7 @@ else:
     print('build new model ')
 basic_model = basic_model.to(device)
 optimizer, scheduler = \
-    BuildModel_VAE.build_optimizer(basic_model)
+    BuildModelpy.build_optimizer(basic_model)
 
 # 开始训练
 loss_list = []
@@ -92,7 +92,7 @@ def train_model(pre_epoch, total_epoch):
         log.write('epoch: %d\n' % epoch)
         train_acc = 0          # accuracy in training set
         count = 0              # show iteration in one epoch
-        log.write('lr: %lf\n' % BuildModel_VAE.get_learning_rate(optimizer)[0])
+        log.write('lr: %lf\n' % BuildModelpy.get_learning_rate(optimizer)[0])
         for data1 in train_loader:
             [inputs, labels] = data1  # use zip to validate model during training
             inputs, labels = inputs.to(device), labels.to(device)
