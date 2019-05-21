@@ -237,8 +237,8 @@ class ModelFloder:
             return os.path.join(folder, 'model_epoch0%d.model' % epoch)
 
 if __name__ == '__main__':
-    import BuildModel_VAE
-    [a, b, model] = BuildModel_VAE.Build(ClassNum=2)
+    import BuildModelpy
+    [a, b, model] = BuildModelpy.Build(ClassNum=2)
     mf = ModelFloder(rebuild=False)
     mf.date = '2018-12-15'
     mf.load_model()

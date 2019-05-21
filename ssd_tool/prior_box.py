@@ -67,10 +67,11 @@ if __name__ == '__main__':
     prior = generate_prior_box(cfg)
     W, H = cfg['img_size']
     DRAW = False
-    import test_tool
+    from ssd_tool import test_tool
+
     if DRAW:
         for (i, a) in enumerate(prior):
-            test_tool.draw_b_box(prior[i:i+1, :], W, H, wait_time=1)
+            test_tool.draw_b_box(prior[i:i + 1, :], W, H, wait_time=1)
             # test_tool.draw_b_box(prior[i:-1:1000, :], W, H, wait_time=1) 矩形雨
             print(a)
 
