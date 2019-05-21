@@ -9,7 +9,7 @@ import json
     '[{\'file_path\' : ..., \', img_id(str)\': ..., ' \
     '\'dets\': [[b-box(x1, x2, y1, y2 4 int)], label(integral)], ...], ...]'
     { 'n_true': 个数， 'img_id': [[x1, y1, x2, y2, det], ...]], ...}"""
-def generate_target_box(config_file, index_file, iou_threshold):
+def generate_target_box(target_folder, config_file, index_file, iou_threshold):
     """生成目标框，并存储到targets文件夹中，
         2012_004310.json：目标的label：0表示背景，非0表示原始的标签+1
         priors.json：先验窗信息
@@ -20,7 +20,7 @@ def generate_target_box(config_file, index_file, iou_threshold):
         2012_004310.json：目标的label：0表示背景，非0表示原始的标签+1
         priors.json：先验窗信息"""
 
-    root = '../targets'
+    root = target_folder
     if not os.path.exists(root):
         os.mkdir(root)
 
@@ -72,10 +72,10 @@ if __name__ == '__main__':
     import ssd_tool.config as config
     cfg = config.test
     index_file_path = 'D:/DataBackup/VOC2012/VOC2012_index.json'
-    target_folder = '../targets'
+    target_folder =  'D:/DataBackup/VOC2012/targets'
     GENERATE = True
     if GENERATE:
-        generate_target_box(cfg, index_file_path, 0.5)
+        generate_target_box(target_folder, cfg, index_file_path, 0.5)
         a = 0
     else:
         load_target(target_folder)
