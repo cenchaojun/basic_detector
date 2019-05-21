@@ -12,10 +12,14 @@ def generate_normal(means, covs, N):
     data = []
     M = len(means)
     Mode_n = np.ones(M, dtype=np.int) * int(N / M)
-    Mode_n[-1] = N - Mode_n[-1]
+    if len(Mode_n) != 1:
+        Mode_n[-1] = N - Mode_n[-1]
     # m为类别标签，n为每个类别的数量
     for [m, n] in enumerate(Mode_n):
-        sample = np.random.multivariate_normal(means[m], covs[m], n)
+        if len(means[m]) == 1:
+            sample = np.random.normal(means[m][0], covs[m][0], n).reshape([n, 1])
+        else:
+            sample = np.random.multivariate_normal(means[m], covs[m], n)
         data += np.hstack((sample, np.zeros([n, 1]) + m)).tolist()
     return data
 
