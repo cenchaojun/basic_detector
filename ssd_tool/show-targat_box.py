@@ -5,8 +5,8 @@ import json
 # 展示COCO数据集的B_BOX，需要事先调用form_index_b-box.py形成index
 index_file_path = 'D:/DataBackup/VOC2012/VOC2012_index.json'
 brief_file_path = 'D:/DataBackup/VOC2012/VOC2012_brief.json'
-priors_file_path = '../targets/priors.json'
-target_root = '../targets'
+priors_file_path = 'D:/DataBackup/VOC2012/targets/priors.json'
+target_root = 'D:/DataBackup/VOC2012/targets'
 
 with open(index_file_path, 'r') as f:
     index = json.load(f)
